@@ -4,19 +4,42 @@ import BurgerIngredients from "./BurgerIngredients/BurgerIngredients";
 
 const Burger = (props) => {
 
-    const transformedIngredients = Object.keys(props.ingredients).map(igKey => {
+    let transformedIngredients = Object.keys(props.ingredients).map(igKey => {
+
         return [...Array(props.ingredients[igKey])].map((_, i) => {
-            return <BurgerIngredients key={igKey + i} type={igKey} />
+
+            return <BurgerIngredients key={igKey + i} type={igKey} />;
+
         });
-    });
+
+    }).reduce((prev, curr) => {
+
+        return curr.concat(prev);
+
+    }, []);
+
+    
+    if (transformedIngredients.length == 0) {
+
+        transformedIngredients = <p>Create Infame's Burger</p>;
+
+    }
+
 
     return (
+
         <div className={classes.Burger}>
+
             <BurgerIngredients type="bread-top" />
-            {transformedIngredients}
+
+                {transformedIngredients}
+
             <BurgerIngredients type="bread-bottom" />
+
         </div>
+
     );
-}; 
+
+};
 
 export default Burger;
