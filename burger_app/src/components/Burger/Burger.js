@@ -19,7 +19,7 @@ const Burger = (props) => {
     }, []);
 
     
-    if (transformedIngredients.length == 0) {
+    if (transformedIngredients.length === 0) {
 
         transformedIngredients = <p>Create Infame's Burger</p>;
 
